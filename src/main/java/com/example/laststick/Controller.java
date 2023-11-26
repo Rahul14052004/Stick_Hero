@@ -1,50 +1,46 @@
 package com.example.laststick;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 
+import java.io.IOException;
+import java.util.EventObject;
+import java.util.Objects;
+
 import static java.lang.Thread.sleep;
 
-public class HelloController {
-    @FXML
-    private Text Opening_Text;
+public class Controller {
+
     @FXML
     private AnchorPane pane;
 
-    @FXML
-    private Rectangle hero;
 
-    private Blocks blocks;
-
-    @FXML
-    private Rectangle start;
-    private Rectangle second_block;
-
+    private Event event;
+    private Stage stage;
+    private Scene scene;
     public void initialize() throws InterruptedException {
-        BackgroundFill bg = new BackgroundFill(Color.LIGHTBLUE,CornerRadii.EMPTY,Insets.EMPTY);
-        pane.setBackground(new Background(bg));
-        hero.setFill(Color.GRAY);
-        Opening_Text.setText("Click Q to start Playing!");
-        Thread.sleep(1000);
-        //make_stick();
 
-        blocks = new Blocks();second_block =blocks.create_obstacles();pane.getChildren().add(second_block);
-        move_hero();
+
 
 
 
@@ -53,13 +49,13 @@ public class HelloController {
 
     }
 
-    private boolean is_dead(){
+   /* private boolean is_dead(){
         return (hero.getX()>= second_block.getX() && hero.getX() <= second_block.getX()+ second_block.getWidth());
 
 
-    }
+    } */
 
-    private void move_hero(){
+    /*private void move_hero(){
         TranslateTransition translate = new TranslateTransition();
         translate.setNode(hero);
         translate.setDuration(Duration.millis(1500));
@@ -74,9 +70,9 @@ public class HelloController {
 
 
 
-    }
+    } */
 
-    private void move_block(){
+    private void move_scene(){
         TranslateTransition t1 = new TranslateTransition();
         t1.setNode(pane);
         t1.setDuration(Duration.millis(1500));
@@ -84,6 +80,11 @@ public class HelloController {
         t1.play();
 
     }
+
+    private void update_points(){
+
+    }
+
 /*
     private void make_stick(){
         Line stick = new Line(hero.getX(),hero.getY(),5,);
@@ -102,6 +103,21 @@ public class HelloController {
         });
     }
 */
+    public void start_game(){
+
+    }
+
+    public void end_game(){
+
+    }
+    public void opening_playing(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("playing_screen.fxml")));
+
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 
 
 }
