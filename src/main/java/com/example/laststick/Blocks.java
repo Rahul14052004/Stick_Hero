@@ -17,6 +17,7 @@ public class Blocks {
     private int height=960;
     private int ceiling = 300; //max distance from last block
     private int starting_x = 154;
+    private Hero hero;
 
 
 
@@ -24,7 +25,7 @@ public class Blocks {
 
         return new Rectangle(rand.nextInt((int)start_block.getLayoutX()+200,(int)start_block.getLayoutX()+450),start_block.getLayoutY(),rand.nextInt(min_width,max_width),start_block.getHeight());
     }
-    public void move_scene(Rectangle start,Rectangle second_block,double start_pos,Hero h){
+    public void move_scene(Rectangle start,Rectangle second_block,double start_pos,Hero h,Stick stick){
         scene_move= new Timeline(new KeyFrame(Duration.seconds(0.005), event-> {
 
             if( second_block.getX() > start_pos ) {
@@ -32,6 +33,7 @@ public class Blocks {
                 start.setLayoutX(start.getLayoutX() - 1);
                 second_block.setX(second_block.getX() - 1);
                 h.hero.setX(h.hero.getX() - 1);
+                stick.getShape().setY(stick.getShape().getY()+1);
             }
             else{
                 stopping_scene();

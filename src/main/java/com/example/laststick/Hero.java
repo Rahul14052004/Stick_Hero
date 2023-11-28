@@ -13,11 +13,12 @@ public class Hero {
     public ImageView hero;
     private double start_val = 0;
     Timeline hero_move;
-
+    private Blocks b;
     private boolean upside_down; // true when inverted otherwise false
-    public Hero(ImageView hero){
+    public Hero(ImageView hero,Blocks b){
         this.upside_down=false;
         this.hero = hero;
+        this.b=b;
     }
 
     public void make_stick(){
@@ -28,13 +29,13 @@ public class Hero {
     Image i1 =new Image("C:\\Users\\rahul\\Desktop\\LastStick\\src\\main\\resources\\com\\example\\laststick\\bb8_f1.png");
     Image i2 = new Image("C:\\Users\\rahul\\Desktop\\LastStick\\src\\main\\resources\\com\\example\\laststick\\bb8-f2.png");
 
-    public void move_hero(Rectangle second_block){
+    public void move_hero(Rectangle start,Rectangle second_block,Stick stick,double start_pos){
 
 
 
-         hero_move= new Timeline(new KeyFrame(Duration.seconds(0.005), event-> {
+        hero_move= new Timeline(new KeyFrame(Duration.seconds(0.005), event-> {
 
-            if( this.hero.getX() < second_block.getX() - second_block.getWidth()) {
+            if( this.hero.getX() < start.getLayoutX() + stick.getHeight()) {
                 if((int)start_val %2 == 0) {
                     this.hero.setImage(i1);
 
@@ -49,11 +50,17 @@ public class Hero {
             }
             else{
                 stopping_hero();
+                System.out.println("sup");
+                System.out.println(stick.getShape().getLayoutY());
+                System.out.println(second_block.getX());
+                System.out.println((stick.getHeight() < second_block.getX()));
+                if(hero_status(stick,second_block,start)){
+                    System.out.println("sup");
+                    b.move_scene(start, second_block, start_pos,this,stick);
+                    b.moving_scene();
+                }
 
             }
-
-
-
         }));
     }
 
@@ -65,8 +72,8 @@ public class Hero {
         hero_move.stop();
     }
 
-    public boolean hero_status(double x1,double x2){
-        return true;
+    public boolean hero_status(Stick stick,Rectangle second_block,Rectangle start){
+        return !((start.getLayoutX()+ start.getWidth()+ stick.getHeight() < second_block.getX()) || start.getLayoutX()+start.getWidth() +stick.getHeight()> second_block.getX()+second_block.getWidth());
     }
 
     public void flip_hero(){
