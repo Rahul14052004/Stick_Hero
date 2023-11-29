@@ -19,7 +19,7 @@ class Stick {
 
     public Stick(Rectangle r) {
         this.shape = r;
-        this.height = 10; // Initial stick length
+        this.height = 0; // Initial stick length
     }
     public Rectangle getShape() {
         return shape;
@@ -37,6 +37,17 @@ class Stick {
         this.shape.setHeight(this.height);
     }
 
+    public void reset_stick(){
+        this.height = 0;
+        this.shape.setHeight(0);
+        this.shape.setLayoutY(303);
+        this.shape.setLayoutX(133);
+        this.shape.setY(0);
+        this.shape.setX(0);
+        this.angle = 0;
+        this.getShape().getTransforms().setAll(new javafx.scene.transform.Rotate(0, this.getShape().getX() + this.getShape().getWidth() / 2.0, this.getShape().getY() + this.getShape().getHeight()));
+
+    }
     public void rotate(){
 //        RotateTransition r = new RotateTransition();
 //        r.setAxis(Rotate.Z_AXIS);

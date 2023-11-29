@@ -24,13 +24,13 @@
             <Image url="@bb8_f1.png" />
          </image>
       </ImageView>
-      <Text fill="WHITE" layoutX="297.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="93.0">
+      <Text fx:id="score" fill="WHITE" layoutX="297.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="93.0">
          <font>
             <Font name="Calisto MT" size="30.0" />
          </font>
       </Text>
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#pause" opacity="0.0" prefHeight="44.0" prefWidth="64.0" text="Button" />
-      <Rectangle fx:id="stick1" arcHeight="5.0" arcWidth="5.0" height="10.0" layoutX="133.0" layoutY="293.0" stroke="BLACK" strokeType="INSIDE" width="4.0">
+      <Rectangle fx:id="stick1" arcHeight="5.0" arcWidth="5.0" layoutX="133.0" layoutY="303.0" stroke="BLACK" strokeType="INSIDE" width="4.0">
          <fill>
             <LinearGradient endX="1.0" endY="1.0" startX="0.9734848773840703" startY="0.8371211904467959">
                <stops>

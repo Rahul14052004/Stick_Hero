@@ -9,6 +9,7 @@ import javafx.util.Duration;
 
 import java.util.*;
 public class Blocks {
+    public static boolean bool = false;
 
     private Random rand = new Random();
     Timeline scene_move;
@@ -26,17 +27,22 @@ public class Blocks {
         return new Rectangle(rand.nextInt((int)start_block.getLayoutX()+200,(int)start_block.getLayoutX()+450),start_block.getLayoutY(),rand.nextInt(min_width,max_width),start_block.getHeight());
     }
     public void move_scene(Rectangle start,Rectangle second_block,double start_pos,Hero h,Stick stick){
-        scene_move= new Timeline(new KeyFrame(Duration.seconds(0.005), event-> {
 
-            if( second_block.getX() > start_pos ) {
+        scene_move= new Timeline(new KeyFrame(Duration.seconds(0.002), event-> {
+
+            if( second_block.getX()+ second_block.getWidth() > 137 ) {
 
                 start.setLayoutX(start.getLayoutX() - 1);
                 second_block.setX(second_block.getX() - 1);
                 h.hero.setX(h.hero.getX() - 1);
-                stick.getShape().setY(stick.getShape().getY()+1);
+
             }
             else{
                 stopping_scene();
+                h.bool = true;
+
+
+                h.hero.setX(second_block.getX()-h.hero.getFitWidth());
             }
 
 
@@ -49,5 +55,8 @@ public class Blocks {
     }
     public void stopping_scene(){
         scene_move.stop();
+
+
+
     }
 }

@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="15c47e64-b756-4137-948b-9e33a73e66d1" name="Changes" comment="Guess who back back again">
-      <change afterPath="$PROJECT_DIR$/2022294_2022392.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/laststick/Stick.java" afterDir="false" />
+    <list default="true" id="15c47e64-b756-4137-948b-9e33a73e66d1" name="Changes" comment="yessir">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/laststick/Bools.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laststick/Blocks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laststick/Blocks.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laststick/Hero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laststick/Hero.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laststick/PlayingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laststick/PlayingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laststick/Stick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laststick/Stick.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/laststick/playing_screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/laststick/playing_screen.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -99,7 +99,9 @@
       <workItem from="1700315115394" duration="6018000" />
       <workItem from="1700369345140" duration="5522000" />
       <workItem from="1700996150506" duration="14128000" />
-      <workItem from="1701139773144" duration="1822000" />
+      <workItem from="1701139773144" duration="3885000" />
+      <workItem from="1701163776126" duration="259000" />
+      <workItem from="1701166804724" duration="34880000" />
     </task>
     <task id="LOCAL-00001" summary="Guess who back back again">
       <option name="closed" value="true" />
@@ -109,15 +111,35 @@
       <option name="project" value="LOCAL" />
       <updated>1700996207007</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="yessir">
+      <option name="closed" value="true" />
+      <created>1701141892163</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1701141892163</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Guess who back back again" />
-    <option name="LAST_COMMIT_MESSAGE" value="Guess who back back again" />
+    <MESSAGE value="yessir" />
+    <option name="LAST_COMMIT_MESSAGE" value="yessir" />
   </component>
 </project>

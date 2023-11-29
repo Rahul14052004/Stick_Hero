@@ -34,6 +34,7 @@ public class PlayingController {
     private Stage stage;
     private Scene scene;
     private Parent root;
+
     @FXML
     private Text Opening_Text;
     @FXML
@@ -50,7 +51,7 @@ public class PlayingController {
     private Cherries cherries;
     @FXML
     Rectangle stick1;
-
+    public static boolean timeline_stopped = false;
     private boolean animation_over = false;
     private boolean isRotating = false;
 
@@ -70,7 +71,8 @@ public class PlayingController {
     public Rectangle getStart() {
         return start;
     }
-
+    private boolean bool = false;
+    private double start_pos_y;
     public void setStart(Rectangle start) {
         this.start = start;
     }
@@ -101,7 +103,23 @@ public class PlayingController {
     private BooleanProperty A_pressed = new SimpleBooleanProperty();
     private BooleanProperty StickGrowing = new SimpleBooleanProperty();
 
-    Timeline game_loop;
+    private Timeline game_loop;
+    private AnimationTimer game_timer;
+
+    public boolean isDown_Pressed() {
+        return Down_Pressed.get();
+    }
+
+    public BooleanProperty Down_PressedProperty() {
+        return Down_Pressed;
+    }
+
+    public void setDown_Pressed(boolean up_Pressed) {
+        this.Down_Pressed.set(up_Pressed);
+    }
+
+    private BooleanProperty Down_Pressed = new SimpleBooleanProperty();
+
 
     public boolean isStickGrowing() {
         return StickGrowing.get();
@@ -128,45 +146,58 @@ public class PlayingController {
     }
 
     public void initialize() throws InterruptedException {
+
         blocks = new Blocks();
         h= new Hero(hero,blocks);
-
         start_pos = start.getLayoutX();
-        get_block();
-        System.out.println(second_block.getLayoutX());
-        System.out.println(second_block.getX());
-        System.out.println(start_pos);
-
+        start_pos_y =start.getLayoutY();
         stick = new Stick(stick1);
-        setStickGrowing(true);
-        pane.setOnKeyPressed(e -> {
-            if (e.getCode() == KeyCode.A) {
-                setA_pressed(true);
-                setStickGrowing(true);
-            }
-        });
-        pane.setOnKeyReleased(e -> {
-            if (e.getCode() == KeyCode.A) {
-                setA_pressed(false);
-                isRotating = true;
-            }
-        });
+        movement_setup();;
+
+        get_block();
         stickAnimation();
         timeline.play();
 
+        System.out.println(start.getLayoutX());
+        System.out.println(second_block.getX());
+        game_loop = new Timeline(new KeyFrame(Duration.seconds(0.005),e->{
+            if (h.bool && h.hero_alive){
+                System.out.println(second_block.getX());
 
 
+                start.setWidth(second_block.getWidth());
+                start.setLayoutX(137 - second_block.getWidth());
+                start.setLayoutY(second_block.getY());
+                second_block.setOpacity(0);
 
+                start_pos = start.getLayoutX();
+                movement_setup();
+                points++;
+                score.setText(Integer.toString(points));
+                h.bool =false;
+                System.out.println("Start");
 
+                get_block();
+                stickAnimation();
+                timeline.play();
+            }
+        }));
+        game_loop.setCycleCount(Animation.INDEFINITE);
+        game_loop.play();
+        loop_game();
+    }
+    private void loop_game() {
 
-
-
+    }
+    public void stop_game_loop(){
+        game_loop.stop();
     }
     private void stop_timeline(){
         timeline.stop();
     }
 
-    private void stickAnimation() {
+    public void stickAnimation() {
+
         AnimationTimer animationTimer = new AnimationTimer() {
             public void stop()
             {
@@ -190,10 +221,14 @@ public class PlayingController {
                         Rotate r =new Rotate(angle,pivotX,pivotY);
                         stick.getShape().getTransforms().add(r);
                         angle= angle+1.5;
+
                     }
                     else{
+                        System.out.println(stick.getShape().getY());
+                        isRotating=false;
                         animation_over=true;
                         this.stop();
+                        angle=0;
                     }
                 }
                 else if (!isA_pressed())
@@ -203,32 +238,19 @@ public class PlayingController {
             }
         };
         timeline = new Timeline(new KeyFrame(Duration.seconds(0.05), e-> {
+
             animationTimer.start();
+
             if (animation_over){
+                animation_over=false;
                 stop_timeline();
-                stick_over = true;
-                falling_over = true;
-                h.move_hero(start,second_block,stick,start_pos);
+                h.move_hero(this.pane,start,second_block,stick,start_pos);
                 h.moving_hero();
-
+                System.out.println(timeline_stopped);
             }
-
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
-
     }
-
-
-
-
-
-    private void game_update(){
-        //game_loop = new Timeline()
-
-            }
-
-
-
     public void get_block(){
         second_block =blocks.create_obstacles(start,pane);second_block.setOpacity(0.0);pane.getChildren().add(second_block);
 
@@ -262,12 +284,25 @@ public class PlayingController {
                 space_bar_pressed.set(false);
             }
         });
-    }
-    private void make_stick(){
-        pane.setOnKeyReleased(e->{
-
+        pane.setOnKeyPressed(e -> {
+            if (e.getCode() == KeyCode.A) {
+                setA_pressed(true);
+                setStickGrowing(true);
+            }
         });
+        pane.setOnKeyReleased(e -> {
+            if (e.getCode() == KeyCode.A) {
+                setA_pressed(false);
+                isRotating = true;
+            }
+        });
+
     }
+//    private void make_stick(){
+//        pane.setOnKeyReleased(e->{
+//
+//        });
+//    }
 
 
 }
