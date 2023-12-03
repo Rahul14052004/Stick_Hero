@@ -9,42 +9,42 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.laststick.GameOverController">
    <children>
       <ImageView fitHeight="403.0" fitWidth="716.0" layoutY="-1.0" opacity="0.58" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@c6.jpg" />
          </image>
       </ImageView>
-      <Rectangle fx:id="start" arcHeight="5.0" arcWidth="5.0" height="97.0" layoutX="67.0" layoutY="303.0" opacity="0.58" stroke="BLACK" strokeType="INSIDE" width="99.0" />
-      <Rectangle fx:id="start1" arcHeight="5.0" arcWidth="5.0" height="97.0" layoutX="310.0" layoutY="303.0" opacity="0.58" stroke="BLACK" strokeType="INSIDE" width="99.0" />
-      <Text fill="#ae1a1a" layoutX="175.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Game Over" wrappingWidth="264.13673400878906">
+      <Rectangle fx:id="rect" arcHeight="5.0" arcWidth="5.0" height="97.0" layoutX="67.0" layoutY="303.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="99.0" />
+      <Rectangle fx:id="rect2" arcHeight="5.0" arcWidth="5.0" height="97.0" layoutX="305.0" layoutY="303.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="99.0" />
+      <Text fx:id="GameOver_text" fill="#ae1a1a" layoutX="175.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Game Over" wrappingWidth="264.13673400878906">
          <font>
             <Font name="Symbol" size="48.0" />
          </font>
       </Text>
       <Rectangle arcHeight="20.0" arcWidth="20.0" height="105.0" layoutX="148.0" layoutY="102.0" stroke="BLACK" strokeType="INSIDE" width="293.0" />
       <Rectangle arcHeight="20.0" arcWidth="20.0" height="46.0" layoutX="274.0" layoutY="227.0" stroke="BLACK" strokeType="INSIDE" width="52.0" />
-      <Text fill="WHITE" layoutX="175.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SCORE" textAlignment="CENTER" wrappingWidth="93.47004699707031">
+      <Text fx:id="fixed_score" fill="WHITE" layoutX="175.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SCORE" textAlignment="CENTER" wrappingWidth="93.47004699707031">
          <font>
             <Font name="Symbol" size="24.0" />
          </font></Text>
-      <Text fill="#f2f2f2" layoutX="344.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BEST" textAlignment="CENTER">
+      <Text fx:id="fixed_best" fill="#f2f2f2" layoutX="344.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BEST" textAlignment="CENTER">
          <font>
             <Font name="Symbol" size="24.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="180.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4" textAlignment="CENTER" wrappingWidth="93.47004699707031">
+      <Text fx:id="score" fill="WHITE" layoutX="180.0" layoutY="182.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4" textAlignment="CENTER" wrappingWidth="93.47004699707031">
          <font>
             <Font name="Symbol" size="24.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="326.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="20" textAlignment="CENTER" wrappingWidth="93.47004699707031">
+      <Text fx:id="high_score" fill="WHITE" layoutX="326.0" layoutY="182.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="20" textAlignment="CENTER" wrappingWidth="93.47004699707031">
          <font>
             <Font name="Symbol" size="24.0" />
          </font>
       </Text>
-      <Line endX="304.2679443359375" endY="106.0" layoutX="-10.0" layoutY="-2.0" startX="304.2679443359375" startY="207.0" stroke="WHITE" />
+      <Line fx:id="line" endX="304.2679443359375" endY="106.0" layoutX="-10.0" layoutY="-2.0" startX="304.2679443359375" startY="207.0" stroke="WHITE" />
       <ImageView fitHeight="38.0" fitWidth="43.0" layoutX="281.0" layoutY="230.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@home%20buttom.jpg" />
@@ -60,8 +60,16 @@
          <image>
             <Image url="@cherry2-removebg-preview.png" />
          </image></ImageView>
-      <Button layoutX="201.0" layoutY="223.0" mnemonicParsing="false" opacity="0.0" prefHeight="52.0" prefWidth="52.0" text="Button" />
-      <Button layoutX="274.0" layoutY="223.0" mnemonicParsing="false" opacity="0.0" prefHeight="52.0" prefWidth="52.0" text="Button" />
-      <Button layoutX="347.0" layoutY="226.0" mnemonicParsing="false" opacity="0.0" prefHeight="46.0" prefWidth="52.0" text="Button" />
+      <Button fx:id="restart_btn" layoutX="201.0" layoutY="223.0" mnemonicParsing="false" onAction="#over_playing" opacity="0.0" prefHeight="52.0" prefWidth="52.0" text="Button" />
+      <Button fx:id="home_btn" layoutX="274.0" layoutY="223.0" mnemonicParsing="false" onAction="#over_home" opacity="0.0" prefHeight="52.0" prefWidth="52.0" text="Button" />
+      <Button fx:id="revive_btn" layoutX="347.0" layoutY="226.0" mnemonicParsing="false" onAction="#over_home_revive" opacity="0.0" prefHeight="46.0" prefWidth="52.0" text="Button" />
+      <Rectangle fx:id="revive_rectangle" arcHeight="20.0" arcWidth="20.0" height="105.0" layoutX="148.0" layoutY="102.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="293.0" />
+      <Text fx:id="revive_Text" fill="#fcfcfc" layoutX="178.0" layoutY="145.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Revive for 10 cherries">
+         <font>
+            <Font name="Symbol" size="25.0" />
+         </font>
+      </Text>
+      <Button fx:id="yes_btn" layoutX="196.0" layoutY="160.0" mnemonicParsing="false" opacity="0.0" text="Yes" />
+      <Button fx:id="no_btn" layoutX="357.0" layoutY="160.0" mnemonicParsing="false" opacity="0.0" text="No" />
    </children>
 </AnchorPane>

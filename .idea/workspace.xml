@@ -4,13 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="15c47e64-b756-4137-948b-9e33a73e66d1" name="Changes" comment="yessir">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/laststick/Bools.java" afterDir="false" />
+    <list default="true" id="15c47e64-b756-4137-948b-9e33a73e66d1" name="Changes" comment="WHAT IVE DONE">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/laststick/GameOverController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/laststick/lightsaber-ignition-6816.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/laststick/saber-hummingwav-14651.mp3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laststick/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laststick/Application.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laststick/Blocks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laststick/Blocks.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laststick/Cherries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laststick/Cherries.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laststick/Hero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laststick/Hero.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laststick/PlayingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laststick/PlayingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/laststick/Stick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/laststick/Stick.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/laststick/GameOver_screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/laststick/GameOver_screen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/laststick/Opening_screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/laststick/Opening_screen.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/laststick/playing_screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/laststick/playing_screen.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -39,24 +44,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/rahul/Desktop&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/rahul/Desktop/LastStick/src/main/resources/com/example/laststick",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.example.laststick" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\rahul\Desktop\LastStick\src\main\resources\com\example\laststick" />
     </key>
@@ -101,7 +109,9 @@
       <workItem from="1700996150506" duration="14128000" />
       <workItem from="1701139773144" duration="3885000" />
       <workItem from="1701163776126" duration="259000" />
-      <workItem from="1701166804724" duration="34880000" />
+      <workItem from="1701166804724" duration="41614000" />
+      <workItem from="1701434982795" duration="290000" />
+      <workItem from="1701621182410" duration="18933000" />
     </task>
     <task id="LOCAL-00001" summary="Guess who back back again">
       <option name="closed" value="true" />
@@ -119,7 +129,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701141892163</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="WHAT IVE DONE">
+      <option name="closed" value="true" />
+      <created>1701256679132</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1701256679132</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -140,6 +158,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Guess who back back again" />
     <MESSAGE value="yessir" />
-    <option name="LAST_COMMIT_MESSAGE" value="yessir" />
+    <MESSAGE value="WHAT IVE DONE" />
+    <option name="LAST_COMMIT_MESSAGE" value="WHAT IVE DONE" />
   </component>
 </project>

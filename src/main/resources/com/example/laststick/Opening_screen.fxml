@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.Double?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -12,31 +11,22 @@
 
 <AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.laststick.Controller">
    <children>
-      <ImageView fitHeight="654.0" fitWidth="1141.0" layoutX="-12.0" layoutY="-9.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="434.0" fitWidth="722.0" layoutX="-17.0" layoutY="-9.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@c6.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="395.0" layoutY="361.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="123.0" fitWidth="105.0" layoutX="240.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@bb8_f1.png" />
          </image></ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="156.0" layoutX="371.0" layoutY="485.0" stroke="BLACK" strokeType="INSIDE" width="211.0" />
-      <Text fill="#ffd400" layoutX="395.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="STICK HERO" wrappingWidth="239.955078125">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="95.0" layoutX="231.0" layoutY="305.0" stroke="BLACK" strokeType="INSIDE" width="121.0" />
+      <Text fill="#ffd400" layoutX="256.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="STICK HERO" wrappingWidth="172.7550048828125">
          <font>
-            <Font name="Symbol" size="59.0" />
+            <Font name="Symbol" size="31.0" />
          </font>
       </Text>
-      <Polygon fill="#ffd61f" layoutX="487.0" layoutY="293.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE">
-        <points>
-          <Double fx:value="-50.0" />
-          <Double fx:value="40.0" />
-          <Double fx:value="50.0" />
-          <Double fx:value="40.0" />
-          <Double fx:value="0.0" />
-          <Double fx:value="-60.0" />
-        </points>
-      </Polygon>
-      <Button layoutX="426.0" layoutY="242.0" mnemonicParsing="false" onAction="#opening_playing" opacity="0.0" prefHeight="84.0" prefWidth="106.0" text="Button" />
+      <Polygon fill="#ffd61f" layoutX="307.0" layoutY="155.0" points="-55.903018951416016, 36.45161056518555, 26.014738082885742, 34.92181396484375, -12.806255340576172, -34.23659896850586" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
+      <Button layoutX="256.0" layoutY="115.0" mnemonicParsing="false" onAction="#opening_playing" opacity="0.0" prefHeight="62.0" prefWidth="70.0" text="Button" />
    </children>
 </AnchorPane>

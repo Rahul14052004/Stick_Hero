@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
 import javafx.event.EventHandler;
 import javafx.scene.*;
@@ -28,6 +29,8 @@ import javafx.beans.binding.BooleanBinding;
 import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
+import java.util.Random;
+//import javafx.scene.media.AudioClip;
 
 
 public class PlayingController {
@@ -67,7 +70,9 @@ public class PlayingController {
 
     @FXML
     private Text score;
-    private int points=0;
+    @FXML
+    private Text cherry_count;
+    public static int points=0;
     public Rectangle getStart() {
         return start;
     }
@@ -86,10 +91,10 @@ public class PlayingController {
     }
 
     private Rectangle second_block;
-    private static int  num_cherries;
+    public static int  num_cherries=0;
     private double start_pos;
 
-    private static int highest_score;
+    public static int highest_score=0;
     private int max_score;
     public static boolean movement_over;
 
@@ -104,6 +109,10 @@ public class PlayingController {
     private BooleanProperty StickGrowing = new SimpleBooleanProperty();
 
     private Timeline game_loop;
+
+
+
+    private Random random = new Random();
     private AnimationTimer game_timer;
 
     public boolean isDown_Pressed() {
@@ -119,6 +128,9 @@ public class PlayingController {
     }
 
     private BooleanProperty Down_Pressed = new SimpleBooleanProperty();
+
+    @FXML
+    private Button gameOver_btn;
 
 
     public boolean isStickGrowing() {
@@ -146,8 +158,10 @@ public class PlayingController {
     }
 
     public void initialize() throws InterruptedException {
+        score.setText(Integer.toString(points));
 
         blocks = new Blocks();
+        cherries  = new Cherries(pane);
         h= new Hero(hero,blocks);
         start_pos = start.getLayoutX();
         start_pos_y =start.getLayoutY();
@@ -158,10 +172,11 @@ public class PlayingController {
         stickAnimation();
         timeline.play();
 
-        System.out.println(start.getLayoutX());
-        System.out.println(second_block.getX());
+
         game_loop = new Timeline(new KeyFrame(Duration.seconds(0.005),e->{
+            cherry_count.setText(Integer.toString(num_cherries));
             if (h.bool && h.hero_alive){
+                angle = 0;
                 System.out.println(second_block.getX());
 
 
@@ -173,20 +188,22 @@ public class PlayingController {
                 start_pos = start.getLayoutX();
                 movement_setup();
                 points++;
+
                 score.setText(Integer.toString(points));
+                highest_score = Math.max(points,highest_score);
                 h.bool =false;
-                System.out.println("Start");
 
                 get_block();
                 stickAnimation();
                 timeline.play();
             }
+            else if(h.bool && !h.hero_alive){
+                stop_game_loop();
+                gameOver_btn.fire();
+            }
         }));
         game_loop.setCycleCount(Animation.INDEFINITE);
         game_loop.play();
-        loop_game();
-    }
-    private void loop_game() {
 
     }
     public void stop_game_loop(){
@@ -208,6 +225,7 @@ public class PlayingController {
 
             @Override
             public void handle(long now) {
+
                 if (isA_pressed() && isStickGrowing() && !isRotating)
                 {
                     stick.update();
@@ -228,7 +246,7 @@ public class PlayingController {
                         isRotating=false;
                         animation_over=true;
                         this.stop();
-                        angle=0;
+
                     }
                 }
                 else if (!isA_pressed())
@@ -244,24 +262,57 @@ public class PlayingController {
             if (animation_over){
                 animation_over=false;
                 stop_timeline();
-                h.move_hero(this.pane,start,second_block,stick,start_pos);
-                h.moving_hero();
-                System.out.println(timeline_stopped);
+                if(stick.getHeight()+start.getLayoutX()+start.getWidth() >= second_block.getX()&& stick.getHeight()+start.getLayoutX()+start.getWidth() <= second_block.getX()+ second_block.getWidth()) {
+                    h.move_hero(this.pane, start, second_block, stick, start_pos,second_block.getX()+second_block.getWidth()- hero.getFitWidth()-15,cherries.cherry);
+                    h.moving_hero();
+                    System.out.println(timeline_stopped);
+
+
+                }
+                else{
+                    h.move_hero(this.pane, start, second_block, stick, start_pos,stick.getHeight()+start.getLayoutX()+start.getWidth()-hero.getFitWidth(),cherries.cherry);
+                    h.moving_hero();
+                    System.out.println(timeline_stopped);
+
+                }
             }
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
     }
+
+
     public void get_block(){
-        second_block =blocks.create_obstacles(start,pane);second_block.setOpacity(0.0);pane.getChildren().add(second_block);
+        second_block =blocks.create_obstacles(start,pane);
+
+        second_block.setOpacity(0.0);pane.getChildren().add(second_block);
+
 
         FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.75), second_block);
         fadeTransition.setFromValue(0.0);
         fadeTransition.setToValue(1.0);
         fadeTransition.setCycleCount(1);
         fadeTransition.play();
+        if(!(random.nextInt(2)==0)){
+            cherries.put_cherry(start.getLayoutX()+start.getWidth(),second_block.getX());
+        }
+        else{
+            cherries.cherry.setOpacity(0);
+        }
     }
     public void pause(ActionEvent event) throws IOException{
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Opening_screen.fxml")));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void game_over_screen(){
+
+    }
+
+    public void game_over(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("GameOver_screen.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

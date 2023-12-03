@@ -3,6 +3,7 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
@@ -26,7 +27,7 @@ public class Blocks {
 
         return new Rectangle(rand.nextInt((int)start_block.getLayoutX()+200,(int)start_block.getLayoutX()+450),start_block.getLayoutY(),rand.nextInt(min_width,max_width),start_block.getHeight());
     }
-    public void move_scene(Rectangle start,Rectangle second_block,double start_pos,Hero h,Stick stick){
+    public void move_scene(Rectangle start, Rectangle second_block, double start_pos, Hero h, Stick stick, ImageView cherry){
 
         scene_move= new Timeline(new KeyFrame(Duration.seconds(0.002), event-> {
 
@@ -35,6 +36,7 @@ public class Blocks {
                 start.setLayoutX(start.getLayoutX() - 1);
                 second_block.setX(second_block.getX() - 1);
                 h.hero.setX(h.hero.getX() - 1);
+                cherry.setX(cherry.getX()-1);
 
             }
             else{
@@ -42,7 +44,7 @@ public class Blocks {
                 h.bool = true;
 
 
-                h.hero.setX(second_block.getX()-h.hero.getFitWidth());
+                //h.hero.setX(second_block.getX()-h.hero.getFitWidth());
             }
 
 

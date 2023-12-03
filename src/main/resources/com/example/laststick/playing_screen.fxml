@@ -13,7 +13,7 @@
 
 <AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.laststick.PlayingController">
    <children>
-      <ImageView fitHeight="403.0" fitWidth="716.0" layoutX="-9.0" layoutY="-2.0" opacity="0.94" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="403.0" fitWidth="716.0" layoutX="-9.0" layoutY="-1.0" opacity="0.94" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@c6.jpg" />
          </image>
@@ -29,7 +29,6 @@
             <Font name="Calisto MT" size="30.0" />
          </font>
       </Text>
-      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#pause" opacity="0.0" prefHeight="44.0" prefWidth="64.0" text="Button" />
       <Rectangle fx:id="stick1" arcHeight="5.0" arcWidth="5.0" layoutX="133.0" layoutY="303.0" stroke="BLACK" strokeType="INSIDE" width="4.0">
          <fill>
             <LinearGradient endX="1.0" endY="1.0" startX="0.9734848773840703" startY="0.8371211904467959">
@@ -48,5 +47,14 @@
             </LinearGradient>
          </fill>
       </Rectangle>
+      <Text fx:id="cherry_count" fill="WHITE" layoutX="533.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="40.13671875" />
+      <ImageView fitHeight="24.0" fitWidth="21.0" layoutX="506.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@cherry2-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="364.0" layoutY="254.0" mnemonicParsing="false" opacity="0.0" prefHeight="46.0" prefWidth="52.0" text="Button" />
+      <Button layoutX="292.0" layoutY="251.0" mnemonicParsing="false" onAction="#pause" opacity="0.0" prefHeight="52.0" prefWidth="52.0" text="Button" />
+      <Button fx:id="gameOver_btn" layoutX="12.0" layoutY="13.0" mnemonicParsing="false" onAction="#game_over" opacity="0.0" prefHeight="6.0" prefWidth="4.0" text="Button" />
    </children>
 </AnchorPane>
