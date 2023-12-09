@@ -17,7 +17,7 @@ public class Audio {
 
     static String over_sound ="src\\main\\resources\\com\\example\\laststick\\GameOverAudio.mpeg";
 
-    static MediaPlayer over_audio = new MediaPlayer(new Media(new File(over_sound).toURI().toString()));
+    static MediaPlayer over_audio  = new MediaPlayer(new Media(new File(over_sound).toURI().toString()));
 
     static MediaPlayer death_audio = new MediaPlayer(new Media(new File(death_sound).toURI().toString()));
     static MediaPlayer cherry_audio = new MediaPlayer(new Media(new File(cherry_sound).toURI().toString()));
