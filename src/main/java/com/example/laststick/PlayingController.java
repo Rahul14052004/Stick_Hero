@@ -104,6 +104,8 @@ public class PlayingController {
 
     public static boolean stick_over;
 
+    private boolean isBonus = false;
+
     public boolean bonus_implementation = true;
     private BooleanProperty space_bar_pressed = new SimpleBooleanProperty();
 
@@ -134,6 +136,9 @@ public class PlayingController {
     }
 
     private BooleanProperty Down_Pressed = new SimpleBooleanProperty();
+
+    @FXML
+    private Text bonusText;
 
     @FXML
     private Button gameOver_btn;
@@ -183,14 +188,15 @@ public class PlayingController {
             cherry_count.setText(Integer.toString(num_cherries));
             if (h.bool && h.hero_alive){
                 angle = 0;
-                System.out.println(second_block.getX());
-
-
                 start.setWidth(second_block.getWidth());
                 start.setLayoutX(137 - second_block.getWidth());
                 start.setLayoutY(second_block.getY());
                 second_block.setOpacity(0);
-
+                if(isBonus && h.hero_alive){
+                    plusAnimation();
+                    isBonus= false;
+                    points++;
+                }
                 start_pos = start.getLayoutX();
                 movement_setup();
                 points++;
@@ -381,12 +387,11 @@ public class PlayingController {
 
     public void bonus_blocks(){
         if ((second_block.getX()<=start.getLayoutX()+400) && bonus_implementation){
-
             if(second_block.getX()<=start.getLayoutX()+250.00){
                 bonus_implementation = false;
             }
             else{
-
+                isBonus = true;
                 second_block.setX(second_block.getX()-0.5);
             }
         }
@@ -394,15 +399,38 @@ public class PlayingController {
             if (second_block.getX()>=start.getLayoutX()+400.00){
                 bonus_implementation = true;
             }
-
             else{
-
+                isBonus = true;
                 second_block.setX(second_block.getX()+0.5);
             }
         }
         else{
             bonus_implementation = !bonus_implementation;
         }
+
+    }
+
+    public void plusAnimation(){
+        bonusText.setText("+2");
+        bonusText.setLayoutX(second_block.getX() + second_block.getWidth()/2 +20);
+        TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(0.75), bonusText);
+        translateTransition.setFromY(0);
+        translateTransition.setToY(-35);
+        translateTransition.setCycleCount(1);
+        translateTransition.setAutoReverse(false);
+        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), bonusText);
+        fadeTransition.setFromValue(0);
+        fadeTransition.setToValue(1);
+        fadeTransition.setCycleCount(1);
+        fadeTransition.setAutoReverse(false);
+        FadeTransition fadeOutTransition = new FadeTransition(Duration.seconds(2), bonusText);
+        fadeOutTransition.setFromValue(1);
+        fadeOutTransition.setToValue(0);
+        fadeOutTransition.setCycleCount(1);
+        fadeOutTransition.setAutoReverse(false);
+        translateTransition.play();
+        fadeTransition.play();
+        fadeOutTransition.play();
     }
 
 }
