@@ -26,11 +26,14 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.binding.BooleanBinding;
-import java.io.File;
-import java.io.IOException;
+
+import java.io.*;
 import java.util.Objects;
 import java.util.Random;
-//import javafx.scene.media.AudioClip;
+import javafx.scene.media.AudioClip;
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
 
 
 public class PlayingController {
@@ -64,14 +67,15 @@ public class PlayingController {
 
     private Stick stick;
     private Timeline timeline;
-    private boolean stickisfalling = false;
-    private boolean falling_over = false;
+    private boolean moving_block = true;
     private AnimationTimer animationTimer;
 
     @FXML
     private Text score;
     @FXML
     private Text cherry_count;
+
+    private int latestPoints = 0;
     public static int points=0;
     public Rectangle getStart() {
         return start;
@@ -99,6 +103,8 @@ public class PlayingController {
     public static boolean movement_over;
 
     public static boolean stick_over;
+
+    public boolean bonus_implementation = true;
     private BooleanProperty space_bar_pressed = new SimpleBooleanProperty();
 
     public void setSpace_bar_pressed(boolean space_bar_pressed) {
@@ -132,7 +138,6 @@ public class PlayingController {
     @FXML
     private Button gameOver_btn;
 
-
     public boolean isStickGrowing() {
         return StickGrowing.get();
     }
@@ -157,9 +162,11 @@ public class PlayingController {
         this.A_pressed.set(a_pressed);
     }
 
-    public void initialize() throws InterruptedException {
-        score.setText(Integer.toString(points));
 
+    public void initialize() throws InterruptedException, IOException {
+        Audio.death_audio.stop();
+        Audio.playing_track.play();
+        score.setText(Integer.toString(points));
         blocks = new Blocks();
         cherries  = new Cherries(pane);
         h= new Hero(hero,blocks);
@@ -168,11 +175,10 @@ public class PlayingController {
         stick = new Stick(stick1);
         movement_setup();;
 
+        loadProgress();
         get_block();
         stickAnimation();
         timeline.play();
-
-
         game_loop = new Timeline(new KeyFrame(Duration.seconds(0.005),e->{
             cherry_count.setText(Integer.toString(num_cherries));
             if (h.bool && h.hero_alive){
@@ -228,9 +234,14 @@ public class PlayingController {
 
                 if (isA_pressed() && isStickGrowing() && !isRotating)
                 {
+                    bonus_blocks();
+                    Audio.stick_growing.play();
                     stick.update();
                 }
                 else if (isRotating){
+                    Audio.stick_growing.stop();
+                    Audio.cherry_audio.stop();
+                    moving_block=false;
                     //Starts rotation
                     if(angle<=90.0 ){
                         double pivotX = stick.getShape().getX() + stick.getShape().getWidth() / 2;
@@ -249,8 +260,12 @@ public class PlayingController {
 
                     }
                 }
+                else if (moving_block ){
+                    bonus_blocks();
+                }
                 else if (!isA_pressed())
                 {
+                    moving_block=true;
                     this.stop();
                 }
             }
@@ -312,16 +327,16 @@ public class PlayingController {
     }
 
     public void game_over(ActionEvent event) throws IOException {
+        Thread saveGame = new Thread(new ProgressThread(points,highest_score,num_cherries));
+        saveGame.start();
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("GameOver_screen.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
+        Audio.playing_track.stop();
         stage.show();
     }
 
-    private void revive(Hero h){
-
-    }
 
 
     private void movement_setup(){
@@ -349,11 +364,45 @@ public class PlayingController {
         });
 
     }
-//    private void make_stick(){
-//        pane.setOnKeyReleased(e->{
-//
-//        });
-//    }
 
+    public void loadProgress() throws IOException{
+        Result result=
+                JUnitCore.runClasses(FileTester.class);
+        for (Failure failure : result.getFailures()) {
+            System.out.println(failure.toString());
+        }
+        System.out.println("File Present:"+result.wasSuccessful());
+        BufferedReader fp = new BufferedReader(new FileReader("SaveProgress.txt"));
+        latestPoints=Integer.parseInt(fp.readLine());
+        highest_score=Integer.parseInt(fp.readLine());
+        num_cherries=Integer.parseInt(fp.readLine());
+        fp.close();
+    }
+
+    public void bonus_blocks(){
+        if ((second_block.getX()<=start.getLayoutX()+400) && bonus_implementation){
+
+            if(second_block.getX()<=start.getLayoutX()+250.00){
+                bonus_implementation = false;
+            }
+            else{
+
+                second_block.setX(second_block.getX()-0.5);
+            }
+        }
+        else if(second_block.getX()>=start.getLayoutX()+250 && !bonus_implementation){
+            if (second_block.getX()>=start.getLayoutX()+400.00){
+                bonus_implementation = true;
+            }
+
+            else{
+
+                second_block.setX(second_block.getX()+0.5);
+            }
+        }
+        else{
+            bonus_implementation = !bonus_implementation;
+        }
+    }
 
 }

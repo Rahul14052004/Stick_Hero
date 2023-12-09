@@ -32,6 +32,7 @@ class Stick {
     }
 
     public void update() {
+
         this.shape.setY(shape.getY()-2);
         this.height+=2;
         this.shape.setHeight(this.height);

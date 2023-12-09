@@ -10,9 +10,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.AudioClip;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
+
+import java.util.Objects;
 
 public class Hero {
 
@@ -50,8 +53,10 @@ public class Hero {
 
     }
 
-    Image i1 =new Image("C:\\Users\\rahul\\Desktop\\LastStick\\src\\main\\resources\\com\\example\\laststick\\bb8_f1.png");
-    Image i2 = new Image("C:\\Users\\rahul\\Desktop\\LastStick\\src\\main\\resources\\com\\example\\laststick\\bb8-f2.png");
+    String image  = String.format("/com/example/laststick/bb8_f1.png");
+    String image2 = String.format("/com/example/laststick/bb8-f2.png");
+    Image i1 =new Image(Objects.requireNonNull(getClass().getResourceAsStream(image)));
+    Image i2 = new Image(Objects.requireNonNull(getClass().getResourceAsStream(image2)));
 
     public void move_hero(AnchorPane pane,  Rectangle start, Rectangle second_block, Stick stick, double start_pos,double end_pos,ImageView cherry){
 
@@ -71,9 +76,12 @@ public class Hero {
         });
 
         hero_move= new Timeline(new KeyFrame(Duration.seconds(0.005), event-> {
+
             if( this.hero.getX() < end_pos-45) {
 
+
                 if(cherry_found ==false &&isS_Pressed() && ((this.hero.getX()+60+80-(int)(this.hero.getFitWidth()/2) >=(int)cherry.getX()-15) && this.hero.getX()+60+80-(int)(this.hero.getFitWidth()/2) <=(int)cherry.getX()+(int)cherry.getFitWidth())){
+                    Audio.cherry_audio.play();
                     cherry_found=true;
                     PlayingController.num_cherries++;
                     cherry.setOpacity(0);
@@ -106,6 +114,7 @@ public class Hero {
 
             }
             else{
+
                 stopping_hero();
                 if(hero_status(stick,second_block,start)){
 
@@ -124,7 +133,7 @@ public class Hero {
     public void hero_dies(Rectangle start, Stick stick){
         final double[] angle = {90};
         hero_die = new Timeline(new KeyFrame(Duration.seconds(0.005), event-> {
-
+            Audio.death_audio.play();
             if( this.hero.getY() < start.getLayoutY() + start.getHeight()) {
                 if((int)start_val %2 == 0) {
                     this.hero.setImage(i1);
@@ -161,6 +170,7 @@ public class Hero {
 
     private void stopping_death(){
         hero_die.stop();
+
     }
 
 

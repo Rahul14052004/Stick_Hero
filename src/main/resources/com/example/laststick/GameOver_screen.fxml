@@ -64,12 +64,25 @@
       <Button fx:id="home_btn" layoutX="274.0" layoutY="223.0" mnemonicParsing="false" onAction="#over_home" opacity="0.0" prefHeight="52.0" prefWidth="52.0" text="Button" />
       <Button fx:id="revive_btn" layoutX="347.0" layoutY="226.0" mnemonicParsing="false" onAction="#over_home_revive" opacity="0.0" prefHeight="46.0" prefWidth="52.0" text="Button" />
       <Rectangle fx:id="revive_rectangle" arcHeight="20.0" arcWidth="20.0" height="105.0" layoutX="148.0" layoutY="102.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="293.0" />
-      <Text fx:id="revive_Text" fill="#fcfcfc" layoutX="178.0" layoutY="145.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Revive for 10 cherries">
+      <Text fx:id="revive_Text" fill="#fcfcfc" layoutX="204.0" layoutY="144.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Revive for 10">
          <font>
             <Font name="Symbol" size="25.0" />
          </font>
       </Text>
-      <Button fx:id="yes_btn" layoutX="196.0" layoutY="160.0" mnemonicParsing="false" opacity="0.0" text="Yes" />
-      <Button fx:id="no_btn" layoutX="357.0" layoutY="160.0" mnemonicParsing="false" opacity="0.0" text="No" />
+      <ImageView fx:id="img" fitHeight="38.0" fitWidth="38.0" layoutX="354.0" layoutY="117.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@cherry2-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <Rectangle fx:id="y_r" arcHeight="5.0" arcWidth="5.0" fill="#323436" height="31.0" layoutX="203.0" layoutY="160.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="38.0" />
+      <Button fx:id="yes_btn" layoutX="191.0" layoutY="163.0" mnemonicParsing="false" opacity="0.0" prefHeight="46.0" prefWidth="99.0" text="Yes" />
+      <Rectangle fx:id="n_r" arcHeight="5.0" arcWidth="5.0" fill="#222528" height="31.0" layoutX="354.0" layoutY="162.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="38.0" />
+      <Button fx:id="no_btn" layoutX="319.0" layoutY="153.0" mnemonicParsing="false" opacity="0.0" prefHeight="48.0" prefWidth="94.0" text="No" />
+      <Text fx:id="y_t" fill="WHITE" layoutX="212.0" layoutY="182.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="YES" />
+      <Text fx:id="n_t" fill="WHITE" layoutX="363.0" layoutY="183.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NO" />
+      <Text fx:id="text" fill="#ea0000" layoutX="79.0" layoutY="342.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NOT ENOUGH CHERRIES!!!" wrappingWidth="494.7231140136719">
+         <font>
+            <Font size="36.0" />
+         </font></Text>
    </children>
 </AnchorPane>

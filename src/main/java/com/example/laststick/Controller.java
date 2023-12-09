@@ -39,14 +39,7 @@ public class Controller {
     private Stage stage;
     private Scene scene;
     public void initialize() throws InterruptedException {
-
-
-
-
-
-
-
-
+        Audio.opening_track.play();
     }
 
    /* private boolean is_dead(){
@@ -116,6 +109,8 @@ public class Controller {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
+        Audio.opening_track.stop();
+
         stage.show();
     }
 
